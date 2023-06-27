@@ -1,10 +1,12 @@
-const express = require ("express");
+const express = require("express");
 const app = express();
-const cors = require("cors")
+const cors = require("cors");
 
-app.use (cors())
-app.post('/api/register', (req:any, res:any) => {
-    res.json({status: "ok"})
-})
+app.use(cors());
+app.use(express.json());
 
-app.listen(8000, console.log("Server started on 8000"))
+app.post("/api/register", (req: any, res: any) => {
+  res.json({ status: "ok" });
+});
+
+app.listen(8000, console.log("Server started on 8000"));
