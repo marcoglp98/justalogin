@@ -40,7 +40,7 @@ const Login = () => {
           type="password"
           placeholder="Password"
         />
-        <input type="submit" value="Register" />
+        <input type="submit" value="Login" />
       </form>
     </div>
   );
