@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -9,23 +10,19 @@ const Login = () => {
   async function loginUser(event: any) {
     event.preventDefault();
 
-    const response = fetch("http://localhost:8000/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
+  
+    const response = axios.post('http://localhost:8000/api/login', {
+      email,
+      password
     });
-    const data:any = (await response).json();
+  
+    const data: any = (await response).data;
     console.log(data);
     if (data.user) {
-      alert(data.user);
-      navigate("/dashboard");
+      alert("Logged in!");
+      navigate('/dashboard');
     } else {
-      alert("Check your email and password");
+      alert('Check your email and password');
     }
   }
 

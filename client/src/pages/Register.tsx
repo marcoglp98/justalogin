@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -8,18 +9,13 @@ const Register = () => {
   async function registerUser(event: any) {
     event.preventDefault();
 
-    const response = fetch("http://localhost:8000/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-      }),
+    const response = axios.post("http://localhost:8000/api/register", {
+      name,
+      email,
+      password,
     });
-    const data = (await response).json();
+
+    const data = (await response).data;
     console.log(data);
   }
 
