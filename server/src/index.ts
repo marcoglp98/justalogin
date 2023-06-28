@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const jwt = require("jsonwebtoken")
 import mongoose from "mongoose";
 import User from "./models/user.model";
 
@@ -33,7 +34,12 @@ app.post("/api/login", async (req: any, res: any) => {
   });
 
   if (user) {
-    return res.json({ status: "ok", user: true });
+    const token = jwt.sign({
+     name: req.body.name,
+      email:req.body.email
+    }, "secret")
+    
+    return res.json({ status: "ok", user: token });
   } else {
     return res.json({ status: "error", user: false });
   }

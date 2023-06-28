@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,20 +15,24 @@ const Login = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        
         email,
         password,
       }),
     });
-    const data = (await response).json();
+    const data:any = (await response).json();
     console.log(data);
+    if (data.user) {
+      alert(data.user);
+      navigate("/dashboard");
+    } else {
+      alert("Check your email and password");
+    }
   }
 
   return (
     <div>
       <h1>Login</h1>
       <form onSubmit={loginUser}>
-       
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}

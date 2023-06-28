@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 const mongoose_1 = __importDefault(require("mongoose"));
 const user_model_1 = __importDefault(require("./models/user.model"));
 const app = express();
@@ -41,7 +42,11 @@ app.post("/api/login", (req, res) => __awaiter(void 0, void 0, void 0, function*
         password: req.body.password,
     });
     if (user) {
-        return res.json({ status: "ok", user: true });
+        const token = jwt.sign({
+            name: req.body.name,
+            email: req.body.email
+        }, "secret");
+        return res.json({ status: "ok", user: token });
     }
     else {
         return res.json({ status: "error", user: false });
