@@ -22,6 +22,7 @@ const Login = () => {
     const data: any = (await response).data;
     console.log(data);
     if (data.user) {
+      localStorage.setItem("token", data.user)
       navigate("/dashboard");
     } else {
       alert("Check your email and password");
