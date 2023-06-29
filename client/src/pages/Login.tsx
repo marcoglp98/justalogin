@@ -7,22 +7,24 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  function goRegister() {
+    navigate("/register");
+  }
+
   async function loginUser(event: any) {
     event.preventDefault();
 
-  
-    const response = axios.post('http://localhost:8000/api/login', {
+    const response = axios.post("http://localhost:8000/api/login", {
       email,
-      password
+      password,
     });
-  
+
     const data: any = (await response).data;
     console.log(data);
     if (data.user) {
-      alert("Logged in!");
-      navigate('/dashboard');
+      navigate("/dashboard");
     } else {
-      alert('Check your email and password');
+      alert("Check your email and password");
     }
   }
 
@@ -44,6 +46,12 @@ const Login = () => {
         />
         <input type="submit" value="Login" />
       </form>
+      <div>
+        <p>
+          You don't have an account?{" "}
+          <span onClick={goRegister}>Register now</span>
+        </p>
+      </div>
     </div>
   );
 };
