@@ -1,11 +1,13 @@
 const express = require("express");
 const cors = require("cors");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 import mongoose from "mongoose";
 import User from "./models/user.model";
 
 const app = express();
-mongoose.connect("mongodb://127.0.0.1:27017/test");
+mongoose.connect(
+  "mongodb+srv://marcoglp98:pzCizLMIEHTnlD4L@cluster0.0ndbdcy.mongodb.net/justalogin"
+);
 
 app.use(cors());
 app.use(express.json());
@@ -34,11 +36,14 @@ app.post("/api/login", async (req: any, res: any) => {
   });
 
   if (user) {
-    const token = jwt.sign({
-     name: req.body.name,
-      email:req.body.email
-    }, "secret")
-    
+    const token = jwt.sign(
+      {
+        name: req.body.name,
+        email: req.body.email,
+      },
+      "secret"
+    );
+
     return res.json({ status: "ok", user: token });
   } else {
     return res.json({ status: "error", user: false });

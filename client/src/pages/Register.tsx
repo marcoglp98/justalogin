@@ -1,7 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +19,13 @@ const Register = () => {
     });
 
     const data = (await response).data;
+    if (data.status === "ok") {
+      alert("Your account has been created");
+      navigate("/login");
+    } else if (data.status === "error") {
+      alert("This email is already in use");
+    }
+
     console.log(data);
   }
 

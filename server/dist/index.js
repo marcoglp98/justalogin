@@ -18,7 +18,7 @@ const jwt = require("jsonwebtoken");
 const mongoose_1 = __importDefault(require("mongoose"));
 const user_model_1 = __importDefault(require("./models/user.model"));
 const app = express();
-mongoose_1.default.connect("mongodb://127.0.0.1:27017/test");
+mongoose_1.default.connect("mongodb+srv://marcoglp98:pzCizLMIEHTnlD4L@cluster0.0ndbdcy.mongodb.net/justalogin");
 app.use(cors());
 app.use(express.json());
 app.post("/api/register", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -44,7 +44,7 @@ app.post("/api/login", (req, res) => __awaiter(void 0, void 0, void 0, function*
     if (user) {
         const token = jwt.sign({
             name: req.body.name,
-            email: req.body.email
+            email: req.body.email,
         }, "secret");
         return res.json({ status: "ok", user: token });
     }
