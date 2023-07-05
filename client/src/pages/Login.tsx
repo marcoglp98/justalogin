@@ -30,7 +30,7 @@ const Login = () => {
   }
 
   return (
-    <div className="text-center bg-blue-400 sm:mt-10">
+    <div className="text-center bg-blue-400 sm:mt-10 sm:rounded-xl">
       <div>
         <h1 className="p-5 text-bold text-4xl border-bottom bg-green-400 sm:rounded-lg  font-serif">
           Login
@@ -55,7 +55,7 @@ const Login = () => {
           placeholder="Password"
         />
         <input
-          className="ml-4 inline-block rounded-full bg-blue-300 px-6 pb-2 pt-2.5 text-base font-serif"
+          className="mt-5 xl:ml-[260px] 2xl:ml-[60px] inline-block rounded-full bg-yellow-300 px-6 pb-2 pt-2.5 text-base font-serif"
           type="submit"
           value="Login"
         />
@@ -63,7 +63,7 @@ const Login = () => {
       <div>
         <p className="text-xl font-serif">
           You don't have an account?{" "}
-          <span onClick={goRegister}>Register now</span>
+          <span className="text-orange-500 hover:underline" onClick={goRegister}>Register now</span>
         </p>
       </div>
     </div>
