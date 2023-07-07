@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { decodeToken, useJwt } from "react-jwt";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -27,7 +26,7 @@ const Dashboard = () => {
           Well done!
         </h1>
       </div>
-      <div className="xl:w-[400px] h-[400px] ml-[250px] mb-1 mb-[100px] mt-[20px]">
+      <div className=" h-[400px] sm:ml-[200px] ml-[30px] mb-[100px] mt-[20px]">
         <img
           className="min-w-sm"
           src={require("../resources/success.gif")}
